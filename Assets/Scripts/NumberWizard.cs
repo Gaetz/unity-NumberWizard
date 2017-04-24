@@ -5,24 +5,36 @@ using UnityEngine;
 public class NumberWizard : MonoBehaviour
 {
 
-    int max = 1000;
-    int min = 1;
-    int guess = 500;
+    int max;
+    int min;
+    int guess;
 
     // Use this for initialization
     void Start()
     {
-        // Allow to reach max number
-        max = max + 1;
+        ResetGame();
         // Game start
-        Intro();
         Guess();
         Instructions();
     }
 
+    void ResetGame()
+    {
+        max = 1000;
+        min = 1;
+        guess = 500;
+        // Display
+        Intro();
+        // Allow to reach max number
+        max = max + 1;
+    }
+
     void Intro()
     {
+        print("==============================");
         print("-= Welcome to Number Wizard =-");
+        print("==============================");
+
         print("Pick a number in your head but don't tell me.");
         print("The number you choose must be between " + min + " and " + max + ".");
     }
@@ -55,6 +67,8 @@ public class NumberWizard : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Return))
         {
             print("I guessed your number :)");
+            print("");
+            ResetGame();
         }
     }
 }
